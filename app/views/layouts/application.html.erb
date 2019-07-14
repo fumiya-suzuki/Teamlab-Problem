@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <html>
   <head>
     <title><%= full_title(yield(:title)) %></title>
@@ -8,15 +9,19 @@
     <%= javascript_include_tag 'application', 
                                'data-turbolinks-track': 'reload' %>
   
-  <!--[if lt IE 9]>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
-      </script>
-    <![endif]-->
+  <%= render 'layouts/shim' %>
   </head>
   
   
 
   <body>
+   <%= render 'layouts/header' %>
+    <div class="container">
+        <% flash.each do |message_type, msg| %>
+  <div class="alert alert-<%= message_type %>"><%= msg %></div>
+<% end %>
     <%= yield %>
+    <%= debug(params) if Rails.env.development? %>
+  </div>
   </body>
 </html>
