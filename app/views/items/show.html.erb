@@ -1,12 +1,13 @@
 <% provide(:title, @item.item) %>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+<h1>商品情報</h1>
 <div>
     <table class="table table-bordered table-condensed item-table">
         <tr>
             <td>商品名:<%= @item.item %></td>
             <td>価格:<%= @item.price %>円</td>
             <td><%= @item.note %></td>
+            <td><%= link_to "編集", edit_item_path(@item.id), class: "btn btn-success" %>
         </tr>
     </table>
 </div>

@@ -33,6 +33,16 @@ class ItemsController < ApplicationController
     redirect_to items_url
   end
 
+  def update
+    @item = Item.find(params[:id])
+    if @item.update_attributes(item_params)
+      flash[:success] = "商品情報を更新しました。"
+      redirect_to @item
+    else
+      render :edit
+    end
+  end
+  
   private
   
     def item_params
