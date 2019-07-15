@@ -1,4 +1,9 @@
 class ItemsController < ApplicationController
+  
+  def index
+    @items = Item.paginate(page: params[:page])
+  end
+  
   def show
     @item = Item.find(params[:id])
   end  
@@ -17,6 +22,17 @@ class ItemsController < ApplicationController
     end
   end
   
+  def edit
+    @item = Item.find(params[:id])
+  end
+  
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    flash[:success] = "#{@item.item}のデータを削除しました。"
+    redirect_to items_url
+  end
+
   private
   
     def item_params

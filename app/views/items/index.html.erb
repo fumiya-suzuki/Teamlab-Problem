@@ -1,0 +1,20 @@
+<% provide(:title, 'All Items') %>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<h1>商品一覧</h1>
+
+<div class="col-md-10 col-md-offset-1">
+    <%= will_paginate %>
+    <table class="table table-condensed table-hover" id="table-users">
+     <% @items.each do |item| %>
+        <tr>
+         <td><%= link_to item.item, item %></td>
+         <td><%= link_to "削除", item, method: :delete,
+             data: { confirm: "削除してよろしいですか？" },
+             class: "btn btn-danger" %>
+         </td>
+        </tr>
+     <% end %>
+</table>
+    <%= will_paginate %>
+</div>
