@@ -7,13 +7,13 @@
         <%= form_with(model: @item, local: true) do |f| %>
             <%= render 'shared/error_messages' %>
             
-            <%= f.label :item , class: "label-signup" %>
+            <%= f.label :item , "商品名", class: "label-signup" %>
             <%= f.text_area :item , class: "form-control" %>
             
-            <%= f.label :price, class: "label-signup" %>
+            <%= f.label :price, "価格", class: "label-signup" %>
             <%= f.number_field :price, class: "form-control" %>
             
-            <%= f.label :note, class: "label-signup" %>
+            <%= f.label :note, "説明", class: "label-signup" %>
             <%= f.text_area :note, class: "form-control" %>
             
             <%= f.submit "新規登録", class: "btn btn-primary btn-block btn-signup" %>
