@@ -1,13 +1,13 @@
 <% provide(:title, @item.item) %>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <h1>商品情報</h1>
-<div>
-    <table class="table table-bordered table-condensed item-table">
-        <tr>
-            <td>商品名:<%= @item.item %></td>
-            <td>価格:<%= @item.price %>円</td>
-            <td><%= @item.note %></td>
-            <td><%= link_to "編集", edit_item_path(@item.id), class: "btn btn-success" %>
-        </tr>
-    </table>
+<div class="card card-body center">
+    <div style="text-align: center;">
+        <%= image_tag "/item_images/#{@item.image}" %> 
+        <h5><%= link_to @company.name, company_path(@company) %></h5>
+        <h2><%= @item.item %></h2>
+        <h4>価格:<%= @item.price %>円</h4>
+        <p><%= @item.note %></p>
+        <%= link_to "編集", edit_item_path(@item.id), class: "btn btn-outline-success col-sm-5" %>
+    </div>
 </div>

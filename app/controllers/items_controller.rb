@@ -1,11 +1,12 @@
 class ItemsController < ApplicationController
   
   def index
-    @items = Item.paginate(page: params[:page])
+    @items = Item.paginate(page: params[:page]).search(params[:search])
   end
   
   def show
     @item = Item.find(params[:id])
+    @company = @item.company
   end  
   
   def new
@@ -13,13 +14,19 @@ class ItemsController < ApplicationController
   end
   
   def create
-    @item = Item.new(item_params)
+    @item = Item.new(
+      item: params[:item],
+      price: params[:price],
+      note: params[:note],
+      image: params[:image],
+      company_id: @current_company.id,    
+    )
     if @item.save
-      flash[:success] = '新規登録に成功しました。'
-      redirect_to @item
+      redirect_to items_url
     else
-      render:new
+      render :new
     end
+
   end
   
   def edit
@@ -37,15 +44,10 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     if @item.update_attributes(item_params)
       flash[:success] = "商品情報を更新しました。"
-      redirect_to @item
+      redirect_to items_url
     else
       render :edit
     end
   end
   
-  private
-  
-    def item_params
-      params.require(:item).permit(:item, :note, :price)
-    end
 end

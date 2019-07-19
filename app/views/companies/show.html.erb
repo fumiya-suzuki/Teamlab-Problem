@@ -1,0 +1,23 @@
+<% provide(:title, @company.name) %>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<div class="card card-body center">
+    <div style="text-align: center;">
+        <div class="company">
+            <h2><%= @company.name %></h2>
+            <%= link_to "商品登録", new_item_path, class: "btn btn-outline-success btn-block" %>
+        </div>
+        
+        
+    <table class="table table-condensed table-striped table-hover item-table" id="table-users">
+        <% @company.items.each do |item| %>
+        <tr>
+            <div class="companies-index-item">
+             <div class="companies-right">
+              <td><%= link_to item.item, item_path(item.id) %></td>
+             </div>
+            </div>
+        </tr>
+        <% end %>
+    </table>
+    </div>
+</div>

@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  get 'companies/index'
+
   root 'home#top'
   get '/signup', to: 'items#new'
-  get 'items/:id/edit', to: 'items#edit', as: :edit_item
-  get 'items/:id/update', to: 'items#update', as: :update_item
-
+  get 'login', to: 'companies#login_page'
   
   resources :items 
+  resources :companies
 end

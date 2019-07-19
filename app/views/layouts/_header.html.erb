@@ -4,10 +4,18 @@
     <div class="container">
         <%= link_to "商品登録システム", root_path, id: "logo" %>
         <nav>
-            <ul class="nav navbar-nav navbar-right">
-               <li><%= link_to "ホーム", root_path %></li>
-               <li><%= link_to "商品一覧", items_path %></li>
-               <li><%= link_to "新規登録", new_item_path %></li>
+            <ul class="nav header-right">
+             <% if session[:company_id] %>
+               <li><%= link_to @current_company.name, company_path(@current_company), class: "text-primary headerlink" %></li>
+               <li><%= link_to "ホーム", root_path, class: "text-white headerlink" %></li>
+               <li><%= link_to "商品一覧", items_path, class: "text-white headerlink"  %></li>
+               <li><%= link_to "商品登録", new_item_path, class: "text-white headerlink"  %></li>
+               <li><%= link_to "企業一覧", login_path, class: "text-white headerlink"  %></li>
+               <li><%= link_to "企業登録", new_company_path, class: "text-white headerlink"  %></li>
+             <% else %>
+               <li><%= link_to "ログイン", login_path, class: "text-white headerlink"  %></li>
+               <li><%= link_to "企業登録", new_company_path, class: "text-white headerlink"  %></li>
+             <% end %>
         </nav>
     </div>
 </header>

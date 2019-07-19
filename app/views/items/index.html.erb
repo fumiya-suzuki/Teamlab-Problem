@@ -1,14 +1,25 @@
 <% provide(:title, 'All Items') %>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<h1>商品一覧</h1>
 
-<div class="col-md-10 col-md-offset-1">
+
+<div class="col-md-10 col-md-offset-1 container">
+    <h1>商品一覧</h1>
     <%= will_paginate %>
-    <table class="table table-condensed table-hover" id="table-users">
+    <!-- 検索機能 -->
+    <div class ="border border-muted search">
+    <p>商品名検索</p>
+    <%= form_tag items_path, :method => 'get' do %>
+      <%= text_field_tag :search, params[:search], class: "form-control" %>
+      <%= submit_tag '検索', :item => nil, class: "btn btn-lg btn-info" %>
+    <% end %>
+    </div>
+    
+    <table class="table table-condensed table-striped table-hover item-table" id="table-users">
      <% @items.each do |item| %>
         <tr>
-         <td><%= link_to item.item, item %></td>
+         <td><%= item.item %></td>
+         <td><%= link_to "詳細", item, class: "btn btn-warning" %></td>
          <td><%= link_to "削除", item, method: :delete,
              data: { confirm: "削除してよろしいですか？" },
              class: "btn btn-danger" %>
